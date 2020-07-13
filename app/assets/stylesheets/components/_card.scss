@@ -1,0 +1,29 @@
+.card {
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  height: 300px;
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  transition-duration: 0.3s;
+}
+
+.card-top {
+  height: 80%;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-bottom {
+  padding: 10px;
+
+
+}
+a {
+text-decoration: none !important;
+    color: black;
+    }
+a:hover {
+  text-decoration: none !important;
+    color: black;
+}

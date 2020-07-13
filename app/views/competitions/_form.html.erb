@@ -1,0 +1,18 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+    <%= simple_form_for @competition do |f| %>
+      <%= f.input :name %>
+      <%= f.input :price %>
+      <%= f.input :image %>
+      <%= f.input :rule %>
+      <%= f.input :award %>
+      <%= f.input :max_entries %>
+      <%= f.submit %>
+    <% end %>
+    </div>
+
+  </div>
+</div>

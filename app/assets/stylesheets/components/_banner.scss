@@ -1,0 +1,15 @@
+.banner {
+  height: 40vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  .banner-container {
+    background-color: #FFFFFF;
+    padding: 10px 15px;
+    width: 50%;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+  }
+}

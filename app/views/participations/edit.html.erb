@@ -1,0 +1,5 @@
+<h2>Add an image for the <%= @participation.competition.name %></h2>
+<%= simple_form_for @participation do |f| %>
+  <%= f.input :image %>
+  <%= f.submit %>
+<% end %>

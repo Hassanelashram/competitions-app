@@ -1,2 +1,74 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80')">
+  <div class="banner-container">
+    <h2>Participate in Contests & Earn Money</h2>
+    <p>The post with the most likes wins the award!</p>
+    <%= link_to 'Browse contests', competitions_path, class: 'btn btn-success'  %>
+  </div>
+</div>
+
+<section style="background-color: red">
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <h2>Step 1</h2>
+        <p>Find a contest you feel comfortable being a part of</p>
+      </div>
+      <div class="col-4">
+        <h2>Step 2</h2>
+        <p> Get verified and upload your picture to a contest. </p>
+      </div>
+      <div class="col-4">
+        <h2>Step 3</h2>
+        <p>Ask your social media fans to vote for you to increase chances</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container my-5">
+    <div class="row my-5">
+      <h1 class="col-12">Popular Contests</h1>
+      <% @comp.each do |c| %>
+        <div class="col-4">
+          <%= link_to c do  %>
+          <div class="card">
+            <div class="card-top" style="background-image: url('<%= c.image %>')">
+            </div>
+            <div class="card-bottom d-flex justify-content-between">
+              <div>
+                <h4><%= c.name %></h4>
+                <p><%= c.participations.count %>/<%= c.max_entries %> Participants</p>
+              </div>
+              <div>
+                <h4>Entrance: <%= humanized_money_with_symbol c.price %></h4>
+                <h4>Award: $<%= c.award %></h4>
+              </div>
+            </div>
+         </div>
+        </div>
+        <% end %>
+      <% end %>
+  </div>
+
+  <div class="row">
+    <h1 class="col-12">Recent winners</h1>
+      <% @part.each do |p| %>
+        <div class="col-4 my-2">
+      <div class="card">
+        <div class="card-top" style="background-image: url('<%= p.image %>');">
+        </div>
+        <div class="card-bottom">
+          <div>
+            <p> By <%= p.user.email %></p>
+          </div>
+          <div>
+            <p>24 Votes</p>
+          </div>
+
+          <h2></h2>
+        </div>
+      </div>
+    </div>
+      <% end %>
+  </div>
+</div>

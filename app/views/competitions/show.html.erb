@@ -1,0 +1,33 @@
+<div class="banner" style="background-image: url('<%= @competition.image %>')">
+  <div class="banner-container">
+    <h2><%= @competition.name %></h2>
+    <p>Guidelines: <%= @competition.rule %></p>
+    <p>Participants: <%= @competition.participations.count %>/<%= @competition.max_entries %></p>
+    <%= link_to 'Participate', competition_participations_path(@competition), method: :post, class: 'btn btn-success' unless @participations.present?  %>
+    <%= link_to 'Participated', competition_participations_path(@competition), method: :post, class: 'btn btn-success disabled' if @participations.present? %>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    <% @competition.participations.each do |p| %>
+    <%= link_to p do  %>
+      <div class="col-4 my-2">
+        <div class="card">
+          <div class="card-top" style="background-image: url('<%= p.image %>');">
+          </div>
+          <div class="card-bottom">
+            <div>
+              <p> By <%= p.user.email %></p>
+            </div>
+            <div>
+              <p>24 Votes</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+  </div>
+</div>
+
