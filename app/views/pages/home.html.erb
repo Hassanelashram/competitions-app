@@ -6,19 +6,19 @@
   </div>
 </div>
 
-<section style="background-color: red">
+<section style="background-color: white">
   <div class="container">
     <div class="row">
       <div class="col-4">
-        <h2>Step 1</h2>
+        <h2><img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752664.svg" alt=""></h2>
         <p>Find a contest you feel comfortable being a part of</p>
       </div>
       <div class="col-4">
-        <h2>Step 2</h2>
+        <h2> <img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752665.svg" alt=""></h2>
         <p> Get verified and upload your picture to a contest. </p>
       </div>
       <div class="col-4">
-        <h2>Step 3</h2>
+        <h2><img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752666.svg" alt=""></h2>
         <p>Ask your social media fans to vote for you to increase chances</p>
       </div>
     </div>
@@ -52,17 +52,17 @@
 
   <div class="row">
     <h1 class="col-12">Recent winners</h1>
-      <% @part.each do |p| %>
+      <% @winners.each do |w| %>
         <div class="col-4 my-2">
       <div class="card">
-        <div class="card-top" style="background-image: url('<%= p.image %>');">
+        <div class="card-top" style="background-image: url('<%= w.participation.image %>');">
         </div>
         <div class="card-bottom">
           <div>
-            <p> By <%= p.user.email %></p>
+            <p> By <%= w.participation.user.email %></p>
           </div>
           <div>
-            <p>24 Votes</p>
+            <p><%= w.participation.votes.count %> Votes</p>
           </div>
 
           <h2></h2>

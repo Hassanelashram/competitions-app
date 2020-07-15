@@ -1,0 +1,43 @@
+<div class="container my-5">
+  <div class="row mx-auto">
+    <div class="col-sm-12 col-lg-3">
+      <div class="dashboard-box">
+        $200 Earned
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-3">
+      <div class="dashboard-box">
+        $200 Spent
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-3">
+        <div class="dashboard-box">
+          <p><%= @part_count %> <%= 'Participation'.pluralize(@part_count) %> </p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-3">
+      <div class="dashboard-box">
+        <%= @vote_count %> <%= "Vote".pluralize(@vote_count) %> in Total
+      </div>
+    </div>
+  </div>
+  <div class="row my-5">
+    <h2 class="col-12">
+      My participations
+    </h2>
+    <% current_user.participations.each do |c| %>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-top" style="background-image: url('<%= c.competition.image %>')">
+
+        </div>
+        <div class="card-bottom">
+          <h2><%= c.competition.name %></h2>
+          <%= link_to 'See my post', c, class: 'btn btn-success' %>
+        </div>
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+</div>

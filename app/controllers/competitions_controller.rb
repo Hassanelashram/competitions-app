@@ -2,7 +2,16 @@ class CompetitionsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
   def index
-    @comp = Competition.all
+DeleteCompetitionsJob.perform_now
+    @comp = Competition.where(open: true)
+    if params[:award].present?
+      @comp = @comp.order(award: :desc)
+    end
+
+    if params[:entrance].present?
+
+      @comp = @comp.order(price_cents: :asc)
+    end
   end
 
   def show
@@ -38,6 +47,6 @@ class CompetitionsController < ApplicationController
   end
 
   def competition_params
-    params.require(:competition).permit(:name, :image, :rule, :award, :price, :max_entries)
+    params.require(:competition).permit(:name, :image, :rule, :award, :price, :max_entries, :end_date)
   end
 end

@@ -2,6 +2,9 @@ class ParticipationsController < ApplicationController
 
   def show
     @participation = Participation.find(params[:id])
+    # @suggestions = Competition.all.limit(3)
+    @suggestions = similar_contests(@participation)
+
   end
   def create
     @comp = Competition.find(params[:competition_id])
@@ -36,6 +39,15 @@ class ParticipationsController < ApplicationController
   end
 
   private
+
+  def similar_contests(record)
+    competitions = Competition.where("name ILIKE ?", record.competition.name)
+    if competitions.count < 3
+      competitions += Competition.where("price_cents < ?", record.competition.price_cents).limit(3 - competitions.count)
+    end
+    return competitions
+  end
+
   def participation_params
     params.require(:participation).permit(:image)
   end
