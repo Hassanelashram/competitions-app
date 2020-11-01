@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container my-5">
   <div class="row py-4">
-
-    <div class="col">
-      <h1>Checkout summary</h1>
-      <p>Purchase of <strong><%= @participation.competition.name %></strong> for <strong><%= humanized_money_with_symbol @participation.amount %></strong></p>
+    <div class="col-sm-12 col-lg-5 mx-auto">
+      <div class="form-box">
+        <h1>Checkout summary</h1>
+      <p>Participation in <strong><%= @participation.competition.name %></strong> for <strong><%= humanized_money_with_symbol @participation.amount %></strong></p>
       <button id="pay" class="btn btn-primary">Pay</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
@@ -15,6 +15,8 @@
           });
         });
       </script>
+      </div>
+
     </div>
   </div>
 </div>

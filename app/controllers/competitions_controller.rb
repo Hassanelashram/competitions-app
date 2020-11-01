@@ -1,16 +1,22 @@
 class CompetitionsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
+
   def index
-DeleteCompetitionsJob.perform_now
-    @comp = Competition.where(open: true)
+    DeleteCompetitionsJob.perform_now
+    @comp = Competition.active
+    
     if params[:award].present?
       @comp = @comp.order(award: :desc)
     end
 
     if params[:entrance].present?
-
       @comp = @comp.order(price_cents: :asc)
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { competitions: @comp } }
     end
   end
 
@@ -18,6 +24,11 @@ DeleteCompetitionsJob.perform_now
     if user_signed_in?
       @part = Participation.where(competition_id: @competition.id)
       @participations = @part.find_by(user_id: current_user.id)
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { participations: @competition.participations } }
     end
   end
 

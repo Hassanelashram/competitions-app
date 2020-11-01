@@ -15,7 +15,7 @@
     <% @competition.participations.each do |p| %>
       <div class="col-4 my-2">
         <div class="card">
-          <div class="card-top" style="background-image: url('<%= p.image %>');">
+          <div class="card-top" style="background-image: url('<%= cl_image_path p.photo.key if p.photo.present? %>');">
           </div>
           <div class="card-bottom">
             <div class="d-flex justify-content-between">

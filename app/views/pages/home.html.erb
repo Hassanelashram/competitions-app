@@ -6,6 +6,8 @@
   </div>
 </div>
 
+
+
 <section style="background-color: white">
   <div class="container">
     <div class="row">
@@ -55,7 +57,7 @@
       <% @winners.each do |w| %>
         <div class="col-4 my-2">
       <div class="card">
-        <div class="card-top" style="background-image: url('<%= w.participation.image %>');">
+        <div class="card-top" style="background-image: url('<%= cl_image_path w.participation.photo.key if w.participation.photo.present? %>');">
         </div>
         <div class="card-bottom">
           <div>

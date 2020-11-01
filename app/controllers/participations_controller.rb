@@ -1,5 +1,5 @@
 class ParticipationsController < ApplicationController
-
+  before_action :authenticate_user!, only: [:create]
   def show
     @participation = Participation.find(params[:id])
     # @suggestions = Competition.all.limit(3)
@@ -49,6 +49,6 @@ class ParticipationsController < ApplicationController
   end
 
   def participation_params
-    params.require(:participation).permit(:image)
+    params.require(:participation).permit(:photo)
   end
 end

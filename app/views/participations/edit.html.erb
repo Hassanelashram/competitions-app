@@ -1,5 +1,16 @@
-<h2>Add an image for the <%= @participation.competition.name %></h2>
-<%= simple_form_for @participation do |f| %>
-  <%= f.input :image %>
-  <%= f.submit %>
-<% end %>
+
+
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-lg-8 mx-auto">
+      <div class="form-box">
+        <h2 class="my-5">Add an image for the <%= @participation.competition.name %></h2>
+        <%= simple_form_for @participation do |f| %>
+          <%= f.input :photo, as: :file, label: false %>
+          <%= f.submit 'Finish', class: 'btn btn-success w-100 mt-5' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

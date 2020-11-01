@@ -1,8 +1,10 @@
 
-<div class="container my-5">
+<div data-controller="playing" class="container my-5">
   <div class="row">
-    <div class="col-8">
-      <img class="full-image"  src="<%= @participation.image %>" alt="">
+    <div class="col-sm-12 col-lg-8 image-holder">
+
+      <img data-target="playing.picture" class="full-image"  src="<%= cl_image_path @participation.photo.key %>" alt="">
+
     </div>
     <div class="col">
       <div class="part-info">
@@ -12,6 +14,9 @@
         <hr>
         <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#exampleModal">
           Vote
+        </button>
+        <button data-action="click->playing#full" class="w-100 my-2 btn btn-outline-success">
+          <p><i class="fas fa-expand-arrows-alt "></i></p>
         </button>
       </div>
       <div class="part-info my-3">

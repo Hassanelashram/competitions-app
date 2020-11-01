@@ -2,6 +2,8 @@ class Competition < ApplicationRecord
   monetize :price_cents
   has_many :participations
 
+  scope :active, -> {where(open: true)}
+
 
   def winning
     Participation.joins(:votes).where(competition: self.id).order("votes DESC").first
