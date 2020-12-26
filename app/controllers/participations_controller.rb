@@ -2,7 +2,6 @@ class ParticipationsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   def show
     @participation = Participation.find(params[:id])
-    # @suggestions = Competition.all.limit(3)
     @suggestions = similar_contests(@participation)
 
   end
