@@ -1,0 +1,67 @@
+
+<div data-controller="playing" class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-lg-8 image-holder">
+
+      <img data-target="playing.picture" class="full-image"  src="<%= cl_image_path @participation.photo.key if @participation.photo.present? %>" alt="">
+
+    </div>
+    <div class="col">
+      <div class="part-info">
+        <h2><%= @participation.votes.count %> <%= "Vote".pluralize(@participation.votes.count) %></h2>
+        <hr>
+          <p>Participated on: <%= @participation.created_at.to_time.strftime('%B %e') %></p>
+        <hr>
+        <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#exampleModal">
+          Vote
+        </button>
+        <button data-action="click->playing#full" class="w-100 my-2 btn btn-outline-success">
+          <p><i class="fas fa-expand-arrows-alt "></i></p>
+        </button>
+      </div>
+      <div class="part-info my-3">
+        <h2>Contest Guidelines</h2>
+        <hr>
+        <p><%= @participation.competition.rule %></p>
+      </div>
+      <div class="part-info my-3">
+        <h2>More contests</h2>
+        <hr>
+        <% @suggestions.each do |s| %>
+        <%= link_to s do  %>
+        <div class="card-suggestion">
+          <div class="card-left" style="background-image: url('<%= s.image %>')">
+
+          </div>
+          <div class="card-content text-left">
+            <p><strong><%= s.name %></strong> </p>
+            <p>Participants: <%= s.participations.count %>/<%= s.max_entries %></p>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">You will receive a link by email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for([@participation, Vote.new]) do |f| %>
+          <%= f.input :email %>
+          <%= f.submit 'Vote', class: 'btn btn-success w-100'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
