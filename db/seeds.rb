@@ -15,6 +15,7 @@ competition = Competition.create!(
     image: "https://images.unsplash.com/photo-1507808973436-a4ed7b5e87c9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
     award: 20,
     max_entries: 10,
+    category: "Funny",
     end_date:  Date.today + 7 
 )
 
@@ -24,6 +25,7 @@ competition2 = Competition.create!(
     rule: "Make a funny video",
     image: "https://images.unsplash.com/photo-1466921583968-f07aa80c526e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     award: 100,
+    category: "Funny",
     max_entries: 100,
     end_date:  Date.today + 7 
 )
