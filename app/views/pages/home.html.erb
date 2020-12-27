@@ -1,40 +1,27 @@
-<div class="banner" style="background-image: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80')">
+<div class="banner " style="background-color: #5100CA">
   <div class="banner-container">
-    <h2>Participate in Contests & Earn Money</h2>
-    <p>The post with the most likes wins the award!</p>
-    <%= link_to 'Browse contests', competitions_path, class: 'btn btn-success'  %>
+    <h2 class="white-text heading-1">Participate in Contests <br>& Earn Money</h2>
+    <hr class="white-line">
+    <p class="subheading white-text">THE PARTICIPANT WITH THE MOST VOTES WINS THE AWARD!</p>
+    <%= link_to 'Browse contests', competitions_path,style: 'position: absolute;', class: 'btn btn-success'  %>
+  </div>
+  <div class="right-banner-container">
+    <%= image_tag "https://www.flaticon.com/svg/static/icons/svg/2997/2997005.svg", width: "200px" %>
   </div>
 </div>
-
-
-
-<section style="background-color: white">
-  <div class="container">
-    <div class="row">
-      <div class="col-4">
-        <h2><img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752664.svg" alt=""></h2>
-        <p>Find a contest you feel comfortable being a part of</p>
-      </div>
-      <div class="col-4">
-        <h2> <img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752665.svg" alt=""></h2>
-        <p> Get verified and upload your picture to a contest. </p>
-      </div>
-      <div class="col-4">
-        <h2><img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752666.svg" alt=""></h2>
-        <p>Ask your social media fans to vote for you to increase chances</p>
-      </div>
-    </div>
-  </div>
-</section>
+<%= image_tag "wave.png" %>
 
 <div class="container my-5">
     <div class="row my-5">
-      <h1 class="col-12">Popular Contests</h1>
+      <h1 class="heading-1 col-12">Popular Contests</h1>
       <% @comp.each do |c| %>
-        <div class="col-4">
+        <div class="col-sm-12 col-lg-4">
           <%= link_to c do  %>
           <div class="card">
             <div class="card-top" style="background-image: url('<%= c.image %>')">
+            <div class="badge badge-purple p-2 m-2">
+                <%= c.ends_in %>
+              </div>
             </div>
             <div class="card-bottom d-flex justify-content-between">
               <div>
@@ -51,9 +38,9 @@
   </div>
 
   <div class="row">
-    <h1 class="col-12">Recent winners</h1>
+    <h1 class="heading-1 col-12">Recent winners</h1>
       <% @winners.each do |w| %>
-        <div class="col-4 my-2">
+        <div class="col-sm-12 col-lg-4 my-2">
       <div class="card">
         <div class="card-top" style="background-image: url('<%= cl_image_path w.participation.photo.key if w.participation.photo.present? %>');">
         </div>
@@ -72,3 +59,22 @@
       <% end %>
   </div>
 </div>
+
+<section style="background-color: white">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-lg-4">
+        <h2><img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752664.svg" alt=""></h2>
+        <p>Find a contest you feel comfortable being a part of</p>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+        <h2> <img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752665.svg" alt=""></h2>
+        <p> Get verified and upload your picture to a contest. </p>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+        <h2><img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752666.svg" alt=""></h2>
+        <p>Ask your social media fans to vote for you to increase chances</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -18,7 +18,7 @@ class ParticipationsController < ApplicationController
         quantity: 1
         }],
         success_url: edit_participation_url(@participation),
-        cancel_url: root_url
+        cancel_url: cancel_stripe_url(@participation)
       )
         @participation.update(checkout_session_id: session.id)
         redirect_to new_participation_payment_path(@participation.id)
@@ -35,6 +35,12 @@ class ParticipationsController < ApplicationController
     @participation = Participation.find(params[:id])
     @participation.update(participation_params)
     redirect_to competition_path(@participation.competition_id)
+  end
+
+  def cancel_stripe
+    participation = Participation.find(params[:id])
+    participation.destroy
+    redirect_to participation.competition
   end
 
   private

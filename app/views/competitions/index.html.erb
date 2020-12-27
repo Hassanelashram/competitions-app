@@ -15,13 +15,28 @@
       <%= link_to 'Ending soon', competitions_path(end_date: 'soon')  %>
     </div>
   </div>
+ 
+      <div class="row my-3">
+         <div class="col-12 text-center">
+         <div class="d-inline pill <%= 'active' if params[:category] == 'all' %>">
+              <%= link_to "all", competitions_path(category: "all")  %>
+            </div>
+          <% @categories.each do |category|  %>
+            <div class="d-inline pill <%= 'active' if params[:category] == category %>">
+              <%= link_to "#{category} #{(Competition.category_count(category))}", competitions_path(category: category)  %>
+              <%=  %>
+            </div>
+          <% end %>
+    </div>
+      </div>
+    
   <div class="row">
     <% @comp.each do |c| %>
-        <div class="col-4 my-2">
+        <div class="col-sm-12 col-lg-4 my-2">
           <%= link_to c do  %>
           <div class="card">
             <div class="card-top" style="background-image: url('<%= c.image %>')">
-              <div class="badge badge-success p-2 m-2">
+              <div class="badge badge-purple p-2 m-2">
                 <%= c.ends_in %>
               </div>
             </div>

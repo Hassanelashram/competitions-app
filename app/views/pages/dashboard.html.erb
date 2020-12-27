@@ -1,23 +1,44 @@
 <div class="container my-5">
-  <div class="row mx-auto">
+  <div class="row">
     <div class="col-sm-12 col-lg-3">
       <div class="dashboard-box">
-        earnings
+        <%= image_tag "earning.png" %>
+        <h4>
+          <strong>$<%= current_user.money_earned %></strong> 
+          <br> <span>Earned</span>
+        </h4> 
       </div>
     </div>
     <div class="col-sm-12 col-lg-3">
       <div class="dashboard-box">
-        $<%= current_user.money_spent %> Spent
+        <%= image_tag "spending.png" %>
+        <h4>
+        <strong>
+        $<%= current_user.money_spent %>
+        </strong>
+          <br> <span>Invested</span>
+        </h4>  
       </div>
     </div>
     <div class="col-sm-12 col-lg-3">
         <div class="dashboard-box">
-          <p><%= current_user.participations.count %> <%= 'Participation'.pluralize(current_user.participations.count) %> </p>
+          <%= image_tag "web.png" %>
+          <h4>
+          <strong>
+          <%= current_user.votes.count %>
+          </strong>
+          
+          <br> <span><%= "Vote".pluralize(current_user.votes.count) %>  Received</span>
+          </h4>
         </div>
       </div>
       <div class="col-sm-12 col-lg-3">
       <div class="dashboard-box">
-        <%= current_user.votes.count %> <%= "Vote".pluralize(current_user.votes.count) %> in Total
+      <%= image_tag "view.png" %>
+      <h4>
+        <strong>12.2K</strong>
+        <br> <span>Views Received</span>
+      </h4>
       </div>
     </div>
   </div>

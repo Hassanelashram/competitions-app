@@ -5,6 +5,7 @@ class CompetitionsController < ApplicationController
   def index
     DeleteCompetitionsJob.perform_now
     @comp = Competition.active
+    @categories = Competition::ALLOWED_CATEGORIES
     
     if params[:award].present?
       @comp = @comp.order(award: :desc)
@@ -12,6 +13,11 @@ class CompetitionsController < ApplicationController
 
     if params[:entrance].present?
       @comp = @comp.order(price_cents: :asc)
+    end
+
+    if params[:category].present?
+      @comp = @comp.where(category: @categories) if params[:category] == "all"
+      @comp = @comp.where(category: params[:category]) unless params[:category] == "all"
     end
 
     respond_to do |format|
@@ -58,6 +64,7 @@ class CompetitionsController < ApplicationController
   end
 
   def competition_params
-    params.require(:competition).permit(:name, :image, :rule, :award, :price, :max_entries, :end_date)
+    params.require(:competition).permit(:name, :image, :rule, :award, :price, :max_entries,
+      :category, :end_date)
   end
 end

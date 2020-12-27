@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :participations, only: [:create]
   end
   resources :participations, only: [:edit, :show]
+  get '/cancel_stripe/:id', to: 'participations#cancel_stripe', as: 'cancel_stripe'
 
   resources :participations, only: :update do
     resources :payments, only: :new

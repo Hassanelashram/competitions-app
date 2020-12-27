@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "https://image.flaticon.com/icons/svg/3142/3142108.svg" %>
-    Contests
+    <h4 class="d-inline white-text"> <strong>Stryfe</strong></h4>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active mr-2">
-          <%= link_to "Participate", new_competition_path, class: "btn btn-danger" %>
+          <%= link_to "Create Contest", new_competition_path, class: "btn btn-danger" if current_user.admin? %>
         </li>
         <li class="nav-item dropdown">
           <%= image_tag "https://image.flaticon.com/icons/svg/3170/3170738.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

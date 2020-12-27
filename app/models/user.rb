@@ -1,27 +1,29 @@
 class User < ApplicationRecord
   has_many :participations
+  has_many :competitions, through: :participations
   has_many :votes, through: :participations
-  has_many :winners, through: :participations
+  has_many :winners, through: :competitions
   validates :first_name, :last_name, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  
   def money_spent
-    ids = participations.map {|p| p.competition_id }
-    comps = ids.map {|c| Competition.find(c)}
-    comps.pluck(:price_cents).sum / 100
+    competitions.pluck(:price_cents).sum / 100
   end
 
   def full_name
     "#{first_name} #{last_name}"
   end
 
-  # def money_earned
-  #   return "Nothing" Winner.where(use)
-  #   ids = participations.map {|p| p.competition_id }
-  #   comps = ids.map {|c| Competition.find(c)}
-  #   comps.pluck(:price_cents).sum / 100
-  # end
+  def admin?
+    admin == true
+  end
+
+  def money_earned
+    ids = Winner.joins(:participation).where("participations.user_id = #{self.id}").pluck(:competition_id)
+    Competition.where(id: ids).pluck(:award).sum
+  end
 end

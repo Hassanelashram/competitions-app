@@ -4,3 +4,23 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
   margin-bottom: 10px;
 }
+
+.pill {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #5100CA;
+  a {
+    text-decoration: none !important;
+    color: #5100CA;
+  }
+  text-decoration: none;
+  padding: 10px;
+  margin: 50px;
+}
+
+.active {
+  background-color: #5100CA;
+  a {
+    text-decoration: none !important;
+    color: white;
+  }
+}

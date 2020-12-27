@@ -1,15 +1,34 @@
 .banner {
   height: 40vh;
+  padding: 100px 0 0 0;
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   .banner-container {
-    background-color: #FFFFFF;
+    padding: 10px 15px;
+  }
+}
+
+.banner-back-guideline {
+  height: 40vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+  .banner-guideline {
     padding: 10px 15px;
     width: 50%;
-    margin: 0 auto;
-    align-items: center;
     text-align: center;
+    background-color: white;
   }
+}
+
+
+
+.white-line {
+  background-color: white;
 }
