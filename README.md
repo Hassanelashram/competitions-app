@@ -1,2 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
 # competitions-app
+
+# Users may participate in contests, simply pay an entrance fee and the participant with the most votes wins the prize.
