@@ -9,7 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("chartkick")
 require("chart.js")
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -32,6 +31,12 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  let countryBtn = document.getElementById('country-btn');
+  const chart = document.getElementById('chart-views');
+  chart.classList.add("visible")
+  countryBtn.addEventListener('click', () => {
+      chart.classList.toggle("visible")
+    })
 });
 
 import "controllers"
