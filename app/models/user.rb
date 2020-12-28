@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :participations
   has_many :competitions, through: :participations
   has_many :votes, through: :participations
+  has_many :views, through: :participations
   has_many :winners, through: :competitions
   validates :first_name, :last_name, presence: true
   # Include default devise modules. Others available are:
