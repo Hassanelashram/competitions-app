@@ -26,6 +26,10 @@ class Competition < ApplicationRecord
     days_left = TimeDifference.between(end_date, Time.now).in_days.round
     if days_left <= 1
       hours_left = TimeDifference.between(end_date, Time.now).in_hours.round
+      if hours_left <= 1
+        minutes_left = TimeDifference.between(end_date, Time.now).in_minutes.round
+        return "Ends in #{minutes_left} #{'minute'.pluralize(minutes_left)}"
+      end
       return "Ends in #{hours_left} #{'hour'.pluralize(hours_left)}"
     end
 

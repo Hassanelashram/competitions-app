@@ -8,6 +8,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'money-rails'
 gem 'stripe'
 gem 'time_difference'
+gem 'geocoder'
 gem 'cloudinary', '~> 1.12.0'
 gem 'dotenv-rails', groups: [:development, :test]
 # Use postgresql as the database for Active Record

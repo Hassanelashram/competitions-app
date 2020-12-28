@@ -9,11 +9,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  
-  def money_spent
-    competitions.pluck(:price_cents).sum / 100
-  end
-
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -25,5 +20,13 @@ class User < ApplicationRecord
   def money_earned
     ids = Winner.joins(:participation).where("participations.user_id = #{self.id}").pluck(:competition_id)
     Competition.where(id: ids).pluck(:award).sum
+  end
+
+  def money_spent
+    competitions.pluck(:price_cents).sum / 100
+  end
+
+  def total_views
+    View.where(participation: participations).count
   end
 end

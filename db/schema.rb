@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_26_224353) do
+ActiveRecord::Schema.define(version: 2020_12_28_201200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,15 @@ ActiveRecord::Schema.define(version: 2020_12_26_224353) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "views", force: :cascade do |t|
+    t.bigint "participation_id", null: false
+    t.string "country"
+    t.string "city"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["participation_id"], name: "index_views_on_participation_id"
+  end
+
   create_table "votes", force: :cascade do |t|
     t.bigint "participation_id", null: false
     t.string "email"
@@ -100,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_12_26_224353) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "participations", "competitions"
   add_foreign_key "participations", "users"
+  add_foreign_key "views", "participations"
   add_foreign_key "votes", "participations"
   add_foreign_key "winners", "competitions"
   add_foreign_key "winners", "participations"
