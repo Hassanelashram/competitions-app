@@ -2,7 +2,7 @@ class ParticipationsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   def show
     @participation = Participation.find(params[:id])
-    @participation.create_view
+    create_view(@participation)
     @suggestions = similar_contests(@participation)
 
   end
@@ -45,6 +45,11 @@ class ParticipationsController < ApplicationController
   end
 
   private
+  def create_view(participation)
+    return participation.views.create! if Rails.env["development"]
+    participation.views.create!(country: request.location.country, city: request.location.country)
+  end
+
   def similar_contests(record)
     competitions = Competition.where("name ILIKE ?", record.competition.name)
     if competitions.count < 3

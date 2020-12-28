@@ -7,8 +7,4 @@ class Participation < ApplicationRecord
   has_many :views, dependent: :destroy
   has_one_attached :photo
 
-  def create_view
-    return views.create! if Rails.env["development"]
-    views.create!(country: request.location.country, city:request.location.country)
-  end
 end
