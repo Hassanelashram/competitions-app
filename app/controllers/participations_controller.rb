@@ -46,6 +46,7 @@ class ParticipationsController < ApplicationController
 
   private
   def create_view(participation)
+    return if current_user == participation.user
     return participation.views.create! if Rails.env["development"]
     participation.views.create!(country: request.location.country, city: request.location.country)
   end
