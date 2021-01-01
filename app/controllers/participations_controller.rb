@@ -3,7 +3,7 @@ class ParticipationsController < ApplicationController
   def show
     @participation = Participation.find(params[:id])
     create_view(@participation)
-    @suggestions = similar_contests(@participation)
+    @suggestions = @participation.competition.recommendations
 
   end
   def create
@@ -49,14 +49,6 @@ class ParticipationsController < ApplicationController
     return if current_user == participation.user
     return participation.views.create! if Rails.env["development"]
     participation.views.create!(country: request.location.country, city: request.location.country)
-  end
-
-  def similar_contests(record)
-    competitions = Competition.where("name ILIKE ?", record.competition.name)
-    if competitions.count < 3
-      competitions += Competition.where("price_cents < ?", record.competition.price_cents).limit(3 - competitions.count)
-    end
-    return competitions
   end
 
   def participation_params

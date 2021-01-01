@@ -35,4 +35,10 @@ class Competition < ApplicationRecord
 
     "Ends in #{days_left} #{'day'.pluralize(days_left)}"
   end
+
+
+  def recommendations
+    Competition.active.where("(name ILIKE ? AND category = ?) OR (name ILIKE ?) OR (category = ?)",
+    self.name, self.category, self.name, self.category).limit(3)
+  end
 end

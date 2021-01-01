@@ -11,7 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
 
   def admin?
@@ -29,5 +29,13 @@ class User < ApplicationRecord
 
   def total_views
     View.where(participation: participations).count
+  end
+
+  def recommendations
+    names = competitions.pluck(:name)
+    categories = competitions.pluck(:category)
+    competitions = Competition.active.where("name similar to '(#{names})%'").or(Competition.active.where(category: categories))
+
+    competitions.where.not(id: self.competitions)
   end
 end
