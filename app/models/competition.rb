@@ -15,11 +15,13 @@ class Competition < ApplicationRecord
   ].freeze
 
   def winning
-    Participation.joins(:votes).where(competition: self.id).order("votes DESC").first
+    return nil if participations.empty?
+    return nil if participations.joins(:votes).empty?
+    participations.joins(:votes).order("votes DESC").first
   end
 
   def self.category_count(category)
-    where(category: category).count
+    where(category: category).active.count
   end
 
   def ends_in
