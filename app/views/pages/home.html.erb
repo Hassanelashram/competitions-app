@@ -4,6 +4,7 @@
     <hr class="white-line">
     <p class="subheading white-text">THE PARTICIPANT WITH THE MOST VOTES WINS THE AWARD!</p>
     <%= link_to 'Browse contests', competitions_path,style: 'position: absolute;', class: 'btn btn-success'  %>
+    <a style="position: absolute; left: 400px;" class=" btn btn-outline-success" href="#howItWorks">How does it work</a>
   </div>
   <div class="right-banner-container">
     <%= image_tag "https://www.flaticon.com/svg/static/icons/svg/2997/2997005.svg", width: "200px" %>
@@ -62,7 +63,7 @@
 
 <section style="background-color: white">
   <div class="container">
-    <div class="row">
+    <div class="row" id="howItWorks">
       <div class="col-sm-12 col-lg-4">
         <h2><img class="step-icon" src="https://image.flaticon.com/icons/svg/752/752664.svg" alt=""></h2>
         <p>Find a contest you feel comfortable being a part of</p>

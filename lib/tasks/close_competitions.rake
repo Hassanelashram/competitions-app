@@ -1,5 +1,5 @@
 desc "Check for competitions that ended"
-task :close_competitions do
+task close_competitions: :environment do
         comps = Competition.active.where("end_date < ? ", Time.now)
         comps.each do |c|
           if !c.nil?
