@@ -2,10 +2,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-8">
+    <div class=" col-sm-12 col-lg-6 my-5 mx-auto">
+    <div class="form-box ">
     <%= simple_form_for @competition do |f| %>
       <%= f.input :name %>
-      <%= f.input :category %>
+      <%= f.input :category, collection: Competition::ALLOWED_CATEGORIES %>
       <%= f.input :price %>
       <%= f.input :image %>
       <%= f.input :rule %>
@@ -14,6 +15,8 @@
       <%= f.input :end_date %>
       <%= f.submit %>
     <% end %>
+    </div>
+    
     </div>
 
   </div>

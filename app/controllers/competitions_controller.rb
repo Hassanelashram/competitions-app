@@ -3,7 +3,6 @@ class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
   def index
-    DeleteCompetitionsJob.perform_now
     @comp = Competition.active
     @categories = Competition::ALLOWED_CATEGORIES
     
