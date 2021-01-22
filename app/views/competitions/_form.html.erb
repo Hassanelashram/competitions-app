@@ -6,7 +6,7 @@
     <div class="form-box ">
     <%= simple_form_for @competition do |f| %>
       <%= f.input :name %>
-      <%= f.input :category, collection: Competition::ALLOWED_CATEGORIES %>
+      <%= f.input :category, collection: Competition::ALLOWED_CATEGORIES, include_blank: false %>
       <%= f.input :price %>
       <%= f.input :image %>
       <%= f.input :rule %>

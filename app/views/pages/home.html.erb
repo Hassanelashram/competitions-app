@@ -3,8 +3,10 @@
     <h2 class="white-text heading-1">Participate in Contests <br>& Earn Money</h2>
     <hr class="white-line">
     <p class="subheading white-text">THE PARTICIPANT WITH THE MOST VOTES WINS THE AWARD!</p>
-    <%= link_to 'Browse contests', competitions_path,style: 'position: absolute;', class: 'btn btn-success'  %>
-    <a style="position: absolute; left: 400px;" class=" btn btn-outline-success" href="#howItWorks">How does it work</a>
+    <div style="position: absolute;"   class="buttons">
+      <%= link_to 'Browse contests', competitions_path, class: 'btn btn-success'  %>
+      <a class="btn btn-outline-success" href="#howItWorks">How does it work</a>
+    </div>
   </div>
   <div class="right-banner-container">
     <%= image_tag "https://www.flaticon.com/svg/static/icons/svg/2997/2997005.svg", width: "200px" %>
@@ -79,10 +81,3 @@
     </div>
   </div>
 </section>
-
-<footer class="blog-footer">
-  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-  <p>
-    <a href="#">Back to top</a>
-  </p>
-</footer>
