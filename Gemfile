@@ -9,6 +9,9 @@ gem 'money-rails'
 gem 'stripe'
 gem 'time_difference'
 gem 'geocoder'
+gem 'omniauth'
+gem 'activerecord-session_store'
+gem 'omniauth-facebook'
 gem "chartkick"
 gem 'cloudinary', '~> 1.12.0'
 gem 'dotenv-rails', groups: [:development, :test]
@@ -34,8 +37,8 @@ gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-
-gem 'devise'
+gem 'omniauth-rails_csrf_protection'
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
