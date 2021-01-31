@@ -52,6 +52,9 @@
     <h2 class="col-12 heading-1">
       Your participations
     </h2>
+    <% if current_user.participations.empty? %>
+      <p class="ml-4">Nothing to show at the moment</p>
+    <% end %>
     <% current_user.participations.each do |p| %>
     <div class="col-sm-12 col-lg-4">
     <%= link_to p do %>
@@ -74,6 +77,9 @@
     <h2 class="col-12 heading-1">
       Contests you might like
     </h2>
+    <% if current_user.recommendations.empty? %>
+      <p class="ml-4">Nothing to show at the moment</p>
+    <% end %>
     <% current_user.recommendations.each do |c| %>
         <div class="col-sm-12 col-lg-4">
           <%= link_to c do  %>

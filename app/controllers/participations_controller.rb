@@ -3,8 +3,7 @@ class ParticipationsController < ApplicationController
   def show
     @participation = Participation.find(params[:id])
     create_view(@participation)
-    @suggestions = @participation.competition.recommendations
-
+    @suggestions = @participation.competition.recommendations.where.not(id: @participation.competition.id)
   end
   def create
     @comp = Competition.find(params[:competition_id])

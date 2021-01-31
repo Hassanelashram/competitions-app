@@ -12,6 +12,8 @@ gem 'geocoder'
 gem 'omniauth'
 gem 'activerecord-session_store'
 gem 'omniauth-facebook'
+gem 'omniauth-oauth2', '~> 1.3.1'
+gem 'omniauth-google-oauth2'
 gem "chartkick"
 gem 'cloudinary', '~> 1.12.0'
 gem 'dotenv-rails', groups: [:development, :test]

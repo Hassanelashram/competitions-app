@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to "/", class: "navbar-brand" do %>
-    <%= image_tag "https://image.flaticon.com/icons/svg/3142/3142108.svg" %>
+    <%= image_tag "trophy.svg" %>
     <h4 class="d-inline white-text"> <strong>Stryfe</strong></h4>
     <% end %>
 
@@ -29,7 +29,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-success" %>
         </li>
       <% end %>
     </ul>
