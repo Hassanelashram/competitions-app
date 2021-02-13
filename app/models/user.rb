@@ -36,7 +36,7 @@ class User < ApplicationRecord
   end
 
   def money_spent
-    competitions.pluck(:price_cents).sum / 100
+    participations.pluck(:amount_cents).sum / 100
   end
 
   def total_views
