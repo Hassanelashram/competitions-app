@@ -2,10 +2,10 @@ class Competition < ApplicationRecord
   monetize :price_cents
   has_many :participations
 
-  scope :active, -> {where(open: true)}
+  scope :active, -> { where(open: true) }
 
   validates :name, :price, :image, :rule, :award, :max_entries,
-  :end_date, :category, presence: true
+            :end_date, :category, presence: true
 
   ALLOWED_CATEGORIES = [
     TATTOO = "Tattoo",
@@ -17,6 +17,7 @@ class Competition < ApplicationRecord
   def winning
     return nil if participations.empty?
     return nil if participations.joins(:votes).empty?
+
     participations.joins(:votes).order("votes DESC").first
   end
 
@@ -38,9 +39,8 @@ class Competition < ApplicationRecord
     "Ends in #{days_left} #{'day'.pluralize(days_left)}"
   end
 
-
   def recommendations
     Competition.active.where("(name ILIKE ? AND category = ?) OR (name ILIKE ?) OR (category = ?)",
-    self.name, self.category, self.name, self.category).limit(3)
+                             name, category, name, category).limit(3)
   end
 end
