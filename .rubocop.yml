@@ -9,6 +9,7 @@ AllCops:
     - 'support/**/*'
     - 'tmp/**/*'
     - 'test/**/*'
+    - 'Guardfile'
 
 Style/ConditionalAssignment:
   Enabled: false
@@ -29,8 +30,6 @@ Style/SignalException:
 Metrics/CyclomaticComplexity:
   Enabled: false
 Style/MissingRespondToMissing:
-  Enabled: false
-Style/MethodMissingSuper:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false

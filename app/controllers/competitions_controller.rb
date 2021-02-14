@@ -1,28 +1,18 @@
 class CompetitionsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_competition, only: [:show, :edit, :update, :destroy]
+  before_action :set_competition, only: %i[show edit update destroy]
 
   def index
     @comp = Competition.active
     @categories = Competition::ALLOWED_CATEGORIES
-    
-    if params[:award].present?
-      @comp = @comp.order(award: :desc)
-    end
 
-    if params[:entrance].present?
-      @comp = @comp.order(price_cents: :asc)
-    end
+    @comp = @comp.order(award: :desc) if params[:award].present?
+    @comp = @comp.order(price_cents: :asc) if params[:entrance].present?
 
-    if params[:category].present?
-      @comp = @comp.where(category: @categories) if params[:category] == "all"
-      @comp = @comp.where(category: params[:category]) unless params[:category] == "all"
-    end
+    return unless params[:category].present?
 
-    respond_to do |format|
-      format.html
-      format.json { render json: { competitions: @comp } }
-    end
+    @comp = @comp.where(category: @categories) if params[:category] == "all"
+    @comp = @comp.where(category: params[:category]) unless params[:category] == "all"
   end
 
   def show
@@ -43,9 +33,7 @@ class CompetitionsController < ApplicationController
 
   def create
     @competition = Competition.new(competition_params)
-    if @competition.save
-      redirect_to @competition
-    end
+    redirect_to @competition if @competition.save
   end
 
   def edit
@@ -64,6 +52,6 @@ class CompetitionsController < ApplicationController
 
   def competition_params
     params.require(:competition).permit(:name, :image, :rule, :award, :price, :max_entries,
-      :category, :end_date)
+                                        :category, :end_date)
   end
 end

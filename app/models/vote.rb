@@ -7,6 +7,7 @@ class Vote < ApplicationRecord
 
   def no_self_vote
     return unless participation.user.email == email
+
     errors.add(email: "You cannot vote for yourself")
   end
 end
