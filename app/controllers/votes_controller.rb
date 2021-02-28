@@ -1,4 +1,11 @@
 class VotesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  def update
+    vote = Vote.find(params[:id])
+    vote.update(verified: true)
+    redirect_to  participation_path(vote.participation_id)
+  end
+
   def create
     @part = Participation.find(params[:participation_id])
     @vote = Vote.new(vote_params)
@@ -11,6 +18,6 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.require(:vote).permit(:email)
+    params.require(:vote).permit(:email, :verified)
   end
 end
