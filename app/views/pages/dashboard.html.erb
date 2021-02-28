@@ -28,7 +28,7 @@
           <%= image_tag "web.png" %>
           <h4>
           <strong>
-          <%= current_user.votes.count %>
+          <%= current_user.votes.verified.count %>
           </strong>
           
           <br> <span><%= "Vote".pluralize(current_user.votes.count) %>  Received</span>

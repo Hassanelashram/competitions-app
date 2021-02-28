@@ -5,6 +5,8 @@ class Vote < ApplicationRecord
   validates_uniqueness_of :email
   validate :no_self_vote
 
+  scope :verified, -> { where(verified: true) }
+
   def no_self_vote
     return unless participation.user.email == email
 

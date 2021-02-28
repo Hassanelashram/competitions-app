@@ -9,7 +9,7 @@
     <div class="col">
       <div class="part-info">
       <div class="counts d-flex justify-content-around">
-        <h2><%= @participation.votes.count %> <%= "Vote".pluralize(@participation.votes.count) %></h2>
+        <h2><%= @participation.votes.verified.count %> <%= "Vote".pluralize(@participation.votes.count) %></h2>
         <h2><%= @participation.views.count  %> <%= "View".pluralize(@participation.views.count) %></h2>
       </div>
         <hr>
