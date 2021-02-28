@@ -17,6 +17,7 @@ gem 'omniauth-google-oauth2'
 gem "chartkick"
 gem 'cloudinary', '~> 1.12.0'
 gem 'dotenv-rails', groups: %i[development test]
+gem "letter_opener", :group => :development
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
