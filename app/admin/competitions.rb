@@ -9,10 +9,16 @@ ActiveAdmin.register Competition do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:name, :price_cents, :rule, :image, :award, :max_entries, :end_date, :open, :category]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  index do
+    column :id
+    column :name
+    column :price_cents
+    column :award
+    column :max_entries
+    column :end_date
+    column :open
+    column :category
+    actions
+  end
   
 end
