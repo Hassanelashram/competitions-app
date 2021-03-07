@@ -45,3 +45,5 @@ participation2 = Participation.create!(
 file = URI.open('https://images.unsplash.com/photo-1517423738875-5ce310acd3da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1005&q=80')
 participation.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 participation2.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
