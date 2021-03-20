@@ -12,8 +12,8 @@ const Competition = ({competition}) => {
                 <div className="card-bottom d-flex justify-content-between">
                     <div>
                         <h4><strong>{ competition.name }</strong></h4>
-                        <p>{console.log(competition.participants)}</p>
                         <p>Cost: { competition.price }</p>
+                        <p>{competition.participations.length}/{competition.max_entries} Participants</p>
                         <h4>Prize: ${competition.award}</h4>
                     </div>
                 </div>

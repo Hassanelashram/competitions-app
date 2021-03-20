@@ -30,4 +30,4 @@
     </div>
       </div>
 </div>
-<%= react_component("Competitions", { competitions: @comp }) %>
+<%= react_component("Competitions", { competitions: CompetitionBlueprint.render_as_hash(@comp, view: :normal) }) %>

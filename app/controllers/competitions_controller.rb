@@ -13,6 +13,8 @@ class CompetitionsController < ApplicationController
 
     @comp = @comp.where(category: @categories) if params[:category] == "all"
     @comp = @comp.where(category: params[:category]) unless params[:category] == "all"
+
+    @comp = CompetitionBlueprint.render_as_hash(@comp)
   end
 
   def show
