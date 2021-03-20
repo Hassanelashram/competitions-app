@@ -19,10 +19,12 @@ gem 'cloudinary', '~> 1.12.0'
 gem 'dotenv-rails', groups: %i[development test]
 gem "letter_opener", :group => :development
 gem 'activeadmin'
-
+gem 'react-rails'
+gem 'blueprinter'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
+gem 'oj'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

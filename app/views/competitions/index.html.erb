@@ -29,28 +29,5 @@
           <% end %>
     </div>
       </div>
-    
-  <div class="row">
-    <% @comp.each do |c| %>
-        <div class="col-sm-12 col-lg-4 my-2">
-          <%= link_to c do  %>
-          <div class="card">
-            <div class="card-top" style="background-image: url('<%= c.image %>')">
-              <div class="badge badge-purple p-2 m-2">
-                <%= c.ends_in %>
-              </div>
-            </div>
-            <div class="card-bottom d-flex justify-content-between">
-              <div>
-                <h4><strong><%= c.name %></strong></h4>
-                <p><%= c.participations.count %>/<%= c.max_entries %> Participants</p>
-                <p>Cost: <%= humanized_money_with_symbol c.price %></p>
-                <h4>Prize: $<%= c.award %></h4>
-              </div>
-            </div>
-         </div>
-        </div>
-        <% end %>
-      <% end %>
-  </div>
 </div>
+<%= react_component("Competitions", { competitions: @comp }) %>
