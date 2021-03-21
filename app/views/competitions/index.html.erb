@@ -1,20 +1,6 @@
 
 
 <div class="container my-5">
-  <div class="row filter-box">
-    <div class="col-1">
-      <i class="fas fa-filter"></i>
-    </div>
-    <div class="col-3">
-      <%= link_to 'Lowest Entrance', competitions_path(entrance: 'lowest')  %>
-    </div>
-    <div class="col-3">
-      <%= link_to 'Highest Award', competitions_path(award: 'highest')  %>
-    </div>
-    <div class="col-3">
-      <%= link_to 'Ending soon', competitions_path(end_date: 'soon')  %>
-    </div>
-  </div>
  
       <div class="row my-3">
          <div class="col-12 text-center">
@@ -30,4 +16,4 @@
     </div>
       </div>
 </div>
-<%= react_component("Competitions", { competitions: CompetitionBlueprint.render_as_hash(@comp, view: :normal) }) %>
+<%= react_component("Competitions") %>
