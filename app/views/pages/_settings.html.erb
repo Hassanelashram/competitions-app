@@ -1,0 +1,44 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-lg- mx-auto">
+        <%= simple_form_for(User, as: current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
+        <%= f.object.country = request.location.country_code if current_user.country.nil? %>
+        <%= f.object.city = request.location.city if current_user.city.nil? %>
+        <%= f.error_notification %>
+        <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar-large" %>
+        <% else %>
+            <%= image_tag "https://image.flaticon.com/icons/svg/3170/3170738.svg", class: "avatar" %>
+        <% end %>
+        
+          <%= f.input :photo, as: :file, label: false %>
+
+          <h2 class="heading-2 my-5">Billing Information</h2>
+          <div class="form-box">
+            <%= f.input :paypal, placeholder: "youremail@example.com" %>
+            <%= f.input :country %>
+            <%= f.input :city %>
+          </div>
+
+          <h2 class="heading-2 my-5">Private Information</h2>
+          <div class="form-box">
+            <%= f.input :password,
+                hint: "leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          </div>
+          <br>
+          <%= f.input :current_password,
+                      hint: "we need your current password to confirm your changes",
+                      required: true,
+                      input_html: { autocomplete: "current-password" },
+                      label: "Current Password To Confirm Changes" %>
+                      <%= f.button :submit, "Update", class: 'btn btn-success w-100' %>
+                      <p class="text-center">Unhappy? <%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+        </div>
+        <% end %>
+  </div>
+</div>

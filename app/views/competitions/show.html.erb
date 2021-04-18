@@ -1,9 +1,9 @@
 <div class="banner-back-guideline" style="background-image: url('<%= @competition.image %>')">
   <div class="banner-guideline">
     <h2><%= @competition.name %></h2>
-    <p>Guidelines: <%= @competition.rule %></p>
-    <p>Participants: <%= @competition.participations.count %>/<%= @competition.max_entries %></p>
-    <p><%= @competition.ends_in%></p>
+    <p> <span class="bold-small-title">Guidelines:</span> <br><small><%= @competition.rule %></small> </p>
+    <p> <span class="bold-small-title">Participants:</span> <%= @competition.participations.count %>/<%= @competition.max_entries %></p>
+    <p><span class="bold-small-title"><%= @competition.ends_in%></span></p>
     <%= link_to 'Participate', competition_participations_path(@competition), method: :post, class: 'btn btn-stryfy' unless @participations.present?  %>
     <%= link_to 'Participated', competition_participations_path(@competition), method: :post, class: 'btn btn-success disabled' if @participations.present? %>
   </div>
@@ -13,7 +13,7 @@
 <div class="container my-5">
   <div class="row">
     <% @competition.participations.each do |p| %>
-      <div class="col-4 my-2">
+      <div class="col-sm-12 col-lg-4 my-2">
         <%= link_to p do %>
           <div class="card">
             <div class="card-top" style="background-image: url('<%= cl_image_path p.photo.key if p.photo.present? %>');">

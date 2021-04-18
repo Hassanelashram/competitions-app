@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth', registrations: :registrations }
   root to: 'pages#home'
   get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
 

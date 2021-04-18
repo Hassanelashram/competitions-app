@@ -1,105 +1,33 @@
-<div class="container my-5">
-  <div class="row">
-  <h2 class="col-12 heading-1">
-      Hello, <%= current_user.full_name %>
-    </h2>
-    <div class="col-sm-12 col-lg-3">
-      <div class="dashboard-box">
-        <%= image_tag "earning.png" %>
-        <h4>
-          <strong>$<%= current_user.money_earned %></strong> 
-          <br> <span>Earned</span>
-        </h4> 
-      </div>
-    </div>
-    <div class="col-sm-12 col-lg-3">
-      <div class="dashboard-box">
-        <%= image_tag "spending.png" %>
-        <h4>
-        <strong>
-        $<%= current_user.money_spent %>
-        </strong>
-          <br> <span>Invested</span>
-        </h4>  
-      </div>
-    </div>
-    <div class="col-sm-12 col-lg-3">
-        <div class="dashboard-box">
-          <%= image_tag "web.png" %>
-          <h4>
-          <strong>
-          <%= current_user.votes.verified.count %>
-          </strong>
-          
-          <br> <span><%= "Vote".pluralize(current_user.votes.count) %>  Received</span>
-          </h4>
-        </div>
-      </div>
-      <div class="col-sm-12 col-lg-3">
-      <div class="dashboard-box">
-      <%= image_tag "view.png" %>
-      <h4>
-        <strong><%= current_user.total_views %></strong>
-        <br> <span>Views Received <br>
-        <span class="link-style" id="country-btn">(see countries)</span>
-        </span>
-      </h4>
-      </div>
-    </div>
-  </div>
-  <%= column_chart current_user.views.group(:country).count, id: "chart-views", class: "mt-4" %>
-  <div class="row my-5">
-    <h2 class="col-12 heading-1">
-      Your participations
-    </h2>
-    <% if current_user.participations.empty? %>
-      <p class="ml-4">Nothing to show at the moment <br><%= link_to "Start Browsing", competitions_path, class: "btn btn-stryfy" %></p>
-    <% end %>
-    <% current_user.participations.each do |p| %>
-    <div class="col-sm-12 col-lg-4">
-    <%= link_to p do %>
-      <div class="card">
-        <div class="card-top" style="background-image: url('<%= cl_image_path p.photo.key if p.photo.present? %>')">
-
-        </div>
-        <div class="card-bottom">
-          <p>Contest: <%= p.competition.name  %></p>
-          <p>Votes: <%= p.votes.count  %></p>
-          <p>Category: <%= p.competition.category  %></p>
-        </div>
-      </div>
-    </div>
-    <% end %>
-    <% end %>
-  </div>
-
-  <div class="row my-5">
-    <h2 class="col-12 heading-1">
-      Contests you might like
-    </h2>
-    <% if current_user.recommendations.empty? %>
-      <p class="ml-4">Nothing to show at the moment <br><%= link_to "Start Browsing", competitions_path, class: "btn btn-stryfy" %></p>
-    <% end %>
-    <% current_user.recommendations.each do |c| %>
-        <div class="col-sm-12 col-lg-4">
-          <%= link_to c do  %>
-          <div class="card">
-            <div class="card-top" style="background-image: url('<%= c.image %>')">
-            <div class="badge badge-purple p-2 m-2">
-                <%= c.ends_in %>
-              </div>
-            </div>
-            <div class="card-bottom d-flex justify-content-between">
-              <div>
-                <h4><strong><%= c.name %></strong></h4>
-                <p><%= c.participations.count %>/<%= c.max_entries %> Participants</p>
-                <p>Cost: <%= humanized_money_with_symbol c.price %></p>
-                <h4>Prize: $<%= c.award %></h4>
-              </div>
-            </div>
-         </div>
-        </div>
+<div class="row">
+  <div class="col-sm-12 col-lg-3 my-5 px-5">
+    <div class="left-menu p-5">
+    <%= link_to dashboard_path(params: {partial: "overview"}) do %>
+      <div class="left-menu-item">
+        <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+        <% else %>
+            <%= image_tag "https://image.flaticon.com/icons/svg/3170/3170738.svg", class: "avatar" %>
         <% end %>
+        <h4 class="d-inline bold"> <%= current_user.full_name %> </h4>
       <% end %>
+      </div>
+      <%= link_to dashboard_path(params: {partial: "settings"}) do  %>
+        <div class="left-menu-item">
+          <%= image_tag "settings.png", class: "avatar" %>
+          <p class="d-inline">Settings</p>
+        </div>
+      <% end %>
+      <%= link_to destroy_user_session_path, method: :delete do%>
+      <div class="left-menu-item">
+        <%= image_tag "power-off.png", class: "avatar" %>
+        <p class="d-inline">Log out</p>
+      </div> 
+      <% end %>
+    </div>
   </div>
-</div>
+    <%= render "#{params[:partial]}" %>
+  </div>
+
+   
+
+  

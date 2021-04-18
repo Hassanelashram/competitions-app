@@ -12,7 +12,7 @@
 }
 
 .banner-back-guideline {
-  height: 40vh;
+  min-height: 40vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -21,7 +21,8 @@
   
   .banner-guideline {
     padding: 10px 15px;
-    width: 50%;
+    width: 60%;
+    height: 90%;
     text-align: center;
     background-color: white;
   }

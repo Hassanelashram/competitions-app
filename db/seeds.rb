@@ -5,7 +5,9 @@ Participation.all.destroy_all
 user = User.create!(
     email: "test@gmail.com",
     password: "hassan",
-    password_confirmation: "hassan"
+    password_confirmation: "hassan",
+    first_name: "Hassan",
+    last_name: "Ardun"
 )
 
 competition = Competition.create!(

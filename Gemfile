@@ -25,6 +25,7 @@ gem 'cancancan'
 gem 'draper'
 gem 'pundit'
 gem 'oj'
+gem 'country_select', '~> 4.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
