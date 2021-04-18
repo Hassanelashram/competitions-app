@@ -1,24 +1,28 @@
-<div class="banner " style="background-color: #5100CA">
-  <div class="banner-container">
+
+
+<div class="row p-5" style="background-color: #5100CA">
+  <div class="col-sm-12 col-lg-8 p-5">
     <h2 class="white-text heading-1">Participate in Contests <br>& Earn Money</h2>
     <hr class="white-line">
     <p class="subheading white-text">THE PARTICIPANT WITH THE MOST VOTES WINS THE AWARD!</p>
     <div style="position: absolute;"   class="buttons">
-      <%= link_to 'Browse contests', competitions_path, class: 'btn btn-success'  %>
-      <a class="btn btn-outline-light" href="#howItWorks">How does it work</a>
+      <%= link_to 'Browse contests', competitions_path, class: 'btn btn-success my-2'  %>
+      <a class="btn btn-outline-light my-2" href="#howItWorks">How does it work</a>
     </div>
   </div>
+  <div class="col-sm-12 col-lg-4 p-5">
   <div class="right-banner-container">
-    <%= image_tag "https://www.flaticon.com/svg/static/icons/svg/2997/2997005.svg", width: "200px" %>
+    <%= image_tag "https://www.flaticon.com/svg/static/icons/svg/2997/2997005.svg", width: "200px", class: "mt-5" %>
+  </div>
   </div>
 </div>
-<%= image_tag "wave.png" %>
+<%= image_tag "wave.png", width: "100%" %>
 
 <div class="container my-5">
     <div class="row my-5">
       <h1 class="heading-1 col-12">Popular Contests</h1>
       <% @comp.each do |c| %>
-        <div class="col-sm-12 col-lg-4">
+        <div class="col-sm-12 col-lg-4 my-2">
           <%= link_to c do  %>
           <div class="card">
             <div class="card-top" style="background-image: url('<%= c.image %>')">
