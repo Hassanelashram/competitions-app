@@ -1,19 +1,1 @@
-
-
-<div class="container my-5">
- 
-      <div class="row my-3">
-         <div class="col-12 text-center">
-         <div class="d-inline pill <%= 'active' if params[:category] == 'all' %>">
-              <%= link_to "all", competitions_path(category: "all")  %>
-            </div>
-          <% @categories.each do |category|  %>
-            <div class="d-inline pill <%= 'active' if params[:category] == category %>">
-              <%= link_to "#{category} #{(Competition.category_count(category))}", competitions_path(category: category)  %>
-              <%=  %>
-            </div>
-          <% end %>
-    </div>
-      </div>
-</div>
 <%= react_component("Competitions") %>

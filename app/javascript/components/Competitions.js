@@ -20,7 +20,7 @@ const Competitions = () => {
       }
 
     return(
-        <div className="container">
+        <div className="container my-5">
             <div className="row filter-box">
                 <div className="col-1">
                     <i className="fas fa-filter"></i>
