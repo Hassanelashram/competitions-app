@@ -5,6 +5,5 @@ class PagesController < ApplicationController
     @comp = Competition.active.order(created_at: :desc).limit(3)
     # @comp = Competition.joins(:participations).order("participations DESC").limit(3)
     @winners = Winner.all.limit(3)
-    raise
   end
 end
