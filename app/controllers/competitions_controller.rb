@@ -8,6 +8,7 @@ class CompetitionsController < ApplicationController
 
     @comp = @comp.order(award: :desc) if params[:award].present?
     @comp = @comp.order(price_cents: :asc) if params[:entrance].present?
+    @comp = @comp.order(end_date: :asc) if params[:end_date].present?
 
     return unless params[:category].present?
 

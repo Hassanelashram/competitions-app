@@ -3,29 +3,28 @@
     <div class="col-1">
       <i class="fas fa-filter"></i>
     </div>
-    <div class="col-3">
+    <div class="col">
       <%= link_to 'Lowest Entrance', competitions_path(entrance: 'lowest')  %>
     </div>
-    <div class="col-3">
+    <div class="col">
       <%= link_to 'Highest Award', competitions_path(award: 'highest')  %>
     </div>
-    <div class="col-3">
+    <div class="col">
       <%= link_to 'Ending soon', competitions_path(end_date: 'soon')  %>
     </div>
   </div>
 
-      <div class="row my-3">
-         <div class="col-12 text-center">
-         <div class="d-inline pill <%= 'active' if params[:category] == 'all' %>">
-              <%= link_to "all", competitions_path(category: "all")  %>
+      <div class="row my-3 text-center mx-auto">
+         <div class="col-5 mx-auto col-lg m-1 d-inline pill <%= 'active' if params[:category] == 'all' %>">
+              <%= link_to "all #{Competition.active.count}", competitions_path(category: "all")  %>
             </div>
           <% @categories.each do |category|  %>
-            <div class="d-inline pill <%= 'active' if params[:category] == category %>">
+            <div class="col-5 mx-auto col-lg m-1 d-inline pill <%= 'active' if params[:category] == category %>">
               <%= link_to "#{category} #{(Competition.category_count(category))}", competitions_path(category: category)  %>
-              <%=  %>
+              
             </div>
           <% end %>
-    </div>
+
       </div>
 
   <div class="row">
@@ -38,14 +37,6 @@
                 <%= c.ends_in %>
               </div>
             </div>
-
-    
-          
-            
-          
-    
-    
-  
             <div class="card-bottom d-flex justify-content-between">
               <div>
                 <h4><strong><%= c.name %></strong></h4>

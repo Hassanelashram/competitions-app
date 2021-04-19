@@ -2,17 +2,14 @@
   <div class="col-sm-12 col-lg-3 my-5 px-5">
     <div class="left-menu p-5">
     <%= link_to dashboard_path(params: {partial: "overview"}) do %>
-      <div class="left-menu-item">
-        <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-        <% else %>
-            <%= image_tag "https://image.flaticon.com/icons/svg/3170/3170738.svg", class: "avatar" %>
-        <% end %>
-        <h4 class="d-inline bold"> <%= current_user.full_name %> </h4>
-      <% end %>
+      <div class="left-menu-item <%= 'active' if params[:partial] == 'overview' %>">
+        <%= cl_image_tag current_user.photo.key, class: "avatar" if current_user.photo.attached? %>
+        <%= image_tag "https://image.flaticon.com/icons/svg/3170/3170738.svg", class: "avatar" unless current_user.photo.attached? %>
+        <h4 class="d-inline bold"> <%= current_user.first_name.truncate(15) %> </h4>
       </div>
+    <% end %>
       <%= link_to dashboard_path(params: {partial: "settings"}) do  %>
-        <div class="left-menu-item">
+        <div class="left-menu-item <%= 'active' if params[:partial] == 'settings' %>">
           <%= image_tag "settings.png", class: "avatar" %>
           <p class="d-inline">Settings</p>
         </div>

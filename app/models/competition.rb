@@ -11,7 +11,8 @@ class Competition < ApplicationRecord
     TATTOO = "Tattoo",
     FUNNY = "Funny",
     BEAUTY = "Beauty",
-    WRITING = "Writing"
+    WRITING = "Writing",
+    CODING = "Coding"
   ].freeze
 
   def winning
