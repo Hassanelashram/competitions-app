@@ -31,7 +31,7 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  const url = "www.stryfe-app.herokuapp.com/users/sign_up?referrer=";
+  const url = "https://stryfe-app.herokuapp.com/users/sign_up?referrer=";
     const copyLinkToClipboard = (user_id) => {
       navigator.clipboard.writeText(url + user_id).then(function() {
         const linkBtn = document.getElementById("link-btn");
