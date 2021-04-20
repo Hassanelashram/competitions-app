@@ -14,12 +14,13 @@
           <p class="d-inline">Settings</p>
         </div>
       <% end %>
-        <a data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <div class="left-menu-item ">
+      <%= link_to dashboard_path(params: {partial: "referrals"}) do  %>
+        <div class="left-menu-item <%= 'active' if params[:partial] == 'referrals' %>">
           <%= image_tag "loudspeaker.png", class: "avatar" %>
           <p class="d-inline">Referral</p>
-        </div> 
-        </a>
+        </div>
+      <% end %>
+        
      
       <%= link_to destroy_user_session_path, method: :delete do%>
       <div class="left-menu-item">
@@ -31,22 +32,3 @@
   </div>
     <%= render "#{params[:partial]}" %>
   </div>
-
-
-  <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <p>Referrer a friend and both earn 4$ to participate in contests</p>
-        <button id="link-btn" data-user-id="<%= current_user.id %>" type="button" class="btn btn-stryfy w-100">Copy Referral Link</button>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>

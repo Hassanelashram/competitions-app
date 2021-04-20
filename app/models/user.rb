@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :votes, through: :participations
   has_many :views, through: :participations
   has_many :winners, through: :competitions
+  has_many :referral_made, foreign_key: :referrer_id, class_name: "Referral"
   has_one_attached :photo
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -23,6 +24,10 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
+  end
+
+  def participations_of_referrals
+    Participation.where(user: referral_made)
   end
 
   def admin?

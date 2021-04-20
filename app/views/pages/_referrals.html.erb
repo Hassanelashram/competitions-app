@@ -1,0 +1,78 @@
+
+<div class="container my-5 px-5">
+  <div class="row">
+    <div class="col-sm-12 col-lg-4">
+        <div class="dashboard-box"> 
+            <%= image_tag "coin.png" %>
+        <h4>
+          <strong>$<%= current_user.money_earned %></strong> 
+          <br> <span>Credits</span>
+        </h4> 
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-4">
+        <div class="dashboard-box"> 
+            <%= image_tag "laugh.png" %>
+        <h4>
+          <strong><%= current_user.referral_made.count %></strong> 
+          <br> <span>Friends Invited</span>
+        </h4> 
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-4">
+        <div class="dashboard-box"> 
+            <%= image_tag "loudspeaker.png" %>
+        <h4>
+          <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-stryfy-outline">Get a link</a>
+        </h4> 
+        
+      </div>
+    </div>
+</div>
+
+
+<div class="row my-5">
+    <h2 class="col-12 heading-1">
+      Your friends are competing!
+    </h2>
+    <% if current_user.participations_of_referrals.empty? %>
+      <p class="ml-4">Nothing to show at the moment <br><%= link_to "Start Browsing", competitions_path, class: "btn btn-stryfy" %></p>
+    <% end %>
+    <% current_user.participations_of_referrals.each do |p| %>
+    <div class="col-sm-12 col-lg-4">
+    <%= link_to p do %>
+      <div class="card">
+        <div class="card-top" style="background-image: url('<%= cl_image_path p.photo.key if p.photo.present? %>')">
+
+        </div>
+        <div class="card-bottom">
+          <p>Contest: <%= p.competition.name  %></p>
+          <p>Votes: <%= p.votes.count  %></p>
+          <p>Category: <%= p.competition.category  %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade text-center" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Referrer a friend and both earn 4$ to participate in contests</p>
+        <button id="link-btn" data-user-id="<%= current_user.id %>" type="button" class="btn btn-stryfy w-100">Copy Referral Link</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

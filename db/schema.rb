@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(version: 2021_04_20_065722) do
   end
 
   create_table "referrals", force: :cascade do |t|
-    t.integer "referrer"
-    t.integer "referred"
+    t.integer "referrer_id"
+    t.integer "referred_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
