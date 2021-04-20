@@ -53,6 +53,8 @@ class RegistrationsController < Devise::RegistrationsController
 
     def create_referral(referrer, referred)
       referrer = User.find(referrer)
+      return unless referrer
+      
       Referral.create!(referrer: referrer, referred: referred)
     end
 
