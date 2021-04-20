@@ -14,6 +14,13 @@
           <p class="d-inline">Settings</p>
         </div>
       <% end %>
+        <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class="left-menu-item ">
+          <%= image_tag "loudspeaker.png", class: "avatar" %>
+          <p class="d-inline">Referral</p>
+        </div> 
+        </a>
+     
       <%= link_to destroy_user_session_path, method: :delete do%>
       <div class="left-menu-item">
         <%= image_tag "power-off.png", class: "avatar" %>
@@ -25,6 +32,38 @@
     <%= render "#{params[:partial]}" %>
   </div>
 
-   
+
+  <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Referrer a friend and both earn 4$ to participate in contests</p>
+        <button id="link-btn" onclick="copyLinkToClipboard(<%= current_user.id %>)" type="button" class="btn btn-stryfy w-100">Copy Referral Link</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+   <script>
+    const url = "www.stryfe-app.herokuapp.com/users/sign_up?referrer=";
+    const copyLinkToClipboard = (user_id) => {
+      navigator.clipboard.writeText(url + user_id).then(function() {
+        const linkBtn = document.getElementById("link-btn");
+        linkBtn.textContent = "Link Copied"
+        linkBtn.classList.add("disabled")
+      }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+      });
+    }
+    
+   </script>
 
   
