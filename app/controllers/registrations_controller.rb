@@ -1,5 +1,27 @@
 class RegistrationsController < Devise::RegistrationsController
-
+    def create
+      build_resource(sign_up_params)
+      
+      resource.save
+      
+      create_referral(params[:user][:referrer].to_i, resource)
+      yield resource if block_given?
+      if resource.persisted?
+        if resource.active_for_authentication?
+          set_flash_message! :notice, :signed_up
+          sign_up(resource_name, resource)
+          respond_with resource, location: after_sign_up_path_for(resource)
+        else
+          set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+          expire_data_after_sign_in!
+          respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        end
+      else
+        clean_up_passwords resource
+        set_minimum_password_length
+        respond_with resource
+      end
+    end
 
     def update
         self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
@@ -21,11 +43,19 @@ class RegistrationsController < Devise::RegistrationsController
       end
 
     protected
+    # def sign_up_params
+    #   params.require(:user).permit(:first_name, :referred_by)
+    # end
 
     def update_resource(resource, params)
       resource.update_without_password(params)
     end
-    
+
+    def create_referral(referrer, referred)
+      referrer = User.find(referrer)
+      Referral.create!(referrer: referrer, referred: referred)
+    end
+
     def after_update_path_for(resource)
         dashboard_path(params: { partial: "overview" })
     end
