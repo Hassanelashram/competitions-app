@@ -55,7 +55,7 @@ class RegistrationsController < Devise::RegistrationsController
       referrer = User.find_by(id: referrer)
       return unless referrer
       
-      Referral.create!(referrer_id: referrer, referred_id: referred)
+      Referral.create!(referrer: referrer, referred: referred)
     end
 
     def after_update_path_for(resource)
