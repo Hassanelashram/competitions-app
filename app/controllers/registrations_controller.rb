@@ -3,8 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
       build_resource(sign_up_params)
       
       resource.save
-      
-      create_referral(params[:user][:referrer].to_i, resource)
+      Referrals::CreateReferralJob.perform_now(params[:user][:referrer].to_i, resource.id)
       yield resource if block_given?
       if resource.persisted?
         if resource.active_for_authentication?
@@ -49,13 +48,6 @@ class RegistrationsController < Devise::RegistrationsController
 
     def update_resource(resource, params)
       resource.update_without_password(params)
-    end
-
-    def create_referral(referrer, referred)
-      referrer = User.find_by(id: referrer)
-      return unless referrer
-      
-      Referral.create!(referrer: referrer, referred: referred)
     end
 
     def after_update_path_for(resource)

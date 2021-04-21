@@ -16,42 +16,19 @@ require("chart.js")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-
-// ----------------------------------------------------
-// Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
-// WRITE YOUR OWN JS STARTING FROM HERE 👇
-// ----------------------------------------------------
-
 // External imports
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
-
+import { linkToClipboard } from '../components/link_to_clipboard';
+import { chartKick } from '../components/chart_kick';
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-    const linkBtn = document.getElementById("link-btn");
-    linkBtn.addEventListener('click', () => {
-      const url = "https://stryfe-app.herokuapp.com/users/sign_up?referrer=";
-      navigator.clipboard.writeText(url + linkBtn.dataset.userId).then(function() {
-        linkBtn.textContent = "Link Copied"
-        linkBtn.classList.add("disabled")
-      }, function(err) {
-        console.error('Async: Could not copy text: ', err);
-      });
-    })
-      
-    
-  let countryBtn = document.getElementById('country-btn');
-  const chart = document.getElementById('chart-views');
-  chart.classList.add("visible")
-  countryBtn.addEventListener('click', () => {
-      chart.classList.toggle("visible")
-    })
+  chartKick();
+  linkToClipboard(); 
 });
 
 import "controllers"
+
 // Support component names relative to this directory:
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");

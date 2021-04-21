@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :views, through: :participations
   has_many :winners, through: :competitions
   has_many :referral_made, foreign_key: :referrer_id, class_name: "Referral"
+  has_many :credits
   has_one_attached :photo
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -32,6 +33,10 @@ class User < ApplicationRecord
 
   def admin?
     admin == true
+  end
+
+  def available_credits
+   credits.sum(&:amount)
   end
 
   def money_earned
