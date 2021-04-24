@@ -17,7 +17,7 @@ gem 'omniauth-google-oauth2'
 gem "chartkick"
 gem 'cloudinary', '~> 1.12.0'
 gem 'dotenv-rails', groups: %i[development test]
-gem "letter_opener", :group => :development
+gem "letter_opener", group: :development
 gem 'activeadmin'
 gem 'react-rails'
 gem 'blueprinter'

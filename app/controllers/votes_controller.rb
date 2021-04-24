@@ -3,14 +3,14 @@ class VotesController < ApplicationController
   def show
     @vote = Vote.find(params[:id])
     @vote.update(verified: true)
-    redirect_to  participation_path(@vote.participation_id)
+    redirect_to participation_path(@vote.participation_id)
     flash[:alert] = "Vote confirmed"
   end
 
   def create
     @part = Participation.find(params[:participation_id])
     @vote = Vote.new(vote_params)
-   
+
     @vote.participation = @part
     redirect_to participation_path(@part)
     if @vote.save

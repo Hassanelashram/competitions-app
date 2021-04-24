@@ -36,7 +36,7 @@ class User < ApplicationRecord
   end
 
   def available_credits
-   credits.sum(&:amount)
+    credits.sum(&:amount)
   end
 
   def money_earned
