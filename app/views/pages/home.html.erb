@@ -44,6 +44,28 @@
       <% end %>
   </div>
 
+  <div class="row my-5">
+    <h2 class="col-12 heading-1">
+      Most Viewed
+    </h2>
+    <% @participations.each do |p| %>
+    <div class="col-sm-12 col-lg-4">
+    <%= link_to p do %>
+      <div class="card">
+        <div class="card-top" style="background-image: url('<%= cl_image_path p.photo.key if p.photo.present? %>')">
+
+        </div>
+        <div class="card-bottom">
+          <p>Contest: <%= p.competition.name  %></p>
+          <p>Votes: <%= p.votes.count  %></p>
+          <p>Category: <%= p.competition.category  %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+
   <div class="row">
     <h1 class="heading-1 col-12">Recent winners</h1>
       <% @winners.each do |w| %>

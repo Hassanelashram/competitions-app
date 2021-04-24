@@ -2,7 +2,8 @@ class ParticipationsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   def show
     @participation = Participation.find(params[:id])
-    create_view(@participation)
+    create_view(@participation) unless current_user == participation.user
+
     @suggestions = @participation.competition.recommendations.where.not(id: @participation.competition.id)
   end
 
@@ -48,11 +49,12 @@ class ParticipationsController < ApplicationController
     )
   end
 
-  def create_view(participation)
-    return if current_user == participation.user
-    return participation.views.create! if Rails.env["development"]
-
-    participation.views.create!(country: request.location.country, city: request.location.country)
+  def create_view(_participation)
+    Views::CreateViewJob.perform_later(
+      @participation.id,
+      request.location.country,
+      request.remote_ip
+    )
   end
 
   def participation_params

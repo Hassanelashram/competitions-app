@@ -1,5 +1,5 @@
 class ParticipationBlueprint < Blueprinter::Base
-    identifier :id
+  identifier :id
 
-    fields :id
+  fields :id
 end
