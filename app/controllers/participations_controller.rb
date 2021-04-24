@@ -52,7 +52,7 @@ class ParticipationsController < ApplicationController
   def create_view(_participation)
     Views::CreateViewJob.perform_later(
       @participation.id,
-      request.location.country,
+      Geocoder.search(request.remote_ip).first.country,
       request.remote_ip
     )
   end
