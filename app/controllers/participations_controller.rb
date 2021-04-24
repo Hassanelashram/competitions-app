@@ -2,7 +2,7 @@ class ParticipationsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   def show
     @participation = Participation.find(params[:id])
-    create_view(@participation) unless current_user == participation.user
+    create_view(@participation) unless current_user == @participation.user
 
     @suggestions = @participation.competition.recommendations.where.not(id: @participation.competition.id)
   end
