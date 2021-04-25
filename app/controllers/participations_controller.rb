@@ -22,7 +22,7 @@ class ParticipationsController < ApplicationController
   def edit
     @participation = Participation.find(params[:id])
   end
-
+  #
   def update
     @participation = Participation.find(params[:id])
     @participation.update(participation_params)
