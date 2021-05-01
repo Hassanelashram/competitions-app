@@ -19,6 +19,4 @@ RSpec.describe Referrals::CreateReferral, type: :service do
             expect(referrer.credits.sum(:amount)).to eq 4
         end
     end
-
-
 end
