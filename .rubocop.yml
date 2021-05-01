@@ -29,6 +29,15 @@ Style/SignalException:
   Enabled: false
 Metrics/CyclomaticComplexity:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: true
+  Exclude: 
+    - spec/**/*
+Metrics/MethodLength:
+  Enabled: true
+  Exclude: 
+    - spec/**/*
+    - 'app/controllers/registrations_controller.rb'
 Style/MissingRespondToMissing:
   Enabled: false
 Style/FrozenStringLiteralComment:

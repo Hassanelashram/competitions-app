@@ -15,12 +15,11 @@ class Participation < ApplicationRecord
 
   scope :most_viewed, lambda {
     select("participations.*, COUNT(views.participation_id) as count")
-    .joins(:competition)
-    .joins(:views)
-    .merge(Competition.active)
-    .group(:id)
-    .order("count desc")
-    .limit(3)
+      .joins(:competition)
+      .joins(:views)
+      .merge(Competition.active)
+      .group(:id)
+      .order("count desc")
+      .limit(3)
   }
-
 end
