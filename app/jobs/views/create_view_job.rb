@@ -2,14 +2,8 @@ module Views
   class CreateViewJob < ApplicationJob
     queue_as :default
 
-    def perform(*args)
-      View.create!(
-        participation_id: args[0],
-        country: args[1],
-        ip_address: args[2]
-      )
-    rescue ActiveRecord::RecordNotUnique => e
-      puts e
+    def perform(participation_id, country, ip_address)
+      Referrals::CreateReferral.new(participation_id, country, ip_address).call
     end
   end
 end
