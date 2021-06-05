@@ -4,23 +4,23 @@
       <i class="fas fa-filter"></i>
     </div>
     <div class="col">
-      <%= link_to 'Lowest Entrance', competitions_path(entrance: 'lowest')  %>
+      <%= link_to 'Lowest Entrance', competitions_path(request.params.merge(sorting: 'entrance'))  %>
     </div>
     <div class="col">
-      <%= link_to 'Highest Award', competitions_path(award: 'highest')  %>
+      <%= link_to 'Highest Award', competitions_path(request.params.merge(sorting: 'award'))  %>
     </div>
     <div class="col">
-      <%= link_to 'Ending soon', competitions_path(end_date: 'soon')  %>
+      <%= link_to 'Ending soon', competitions_path(request.params.merge(sorting: 'ending'))  %>
     </div>
   </div>
 
       <div class="row my-3 text-center mx-auto">
-         <div class="col-5 mx-auto col-lg d-inline pill <%= 'active' if params[:category] == 'all' %>">
-              <%= link_to "all #{Competition.active.count}", competitions_path(category: "all")  %>
+         <div class="col-5 mx-auto col-lg d-inline pill <%= 'active' if params[:category] == '' %>">
+              <%= link_to "all #{Competition.active.count}", competitions_path(request.params.merge(category: ""))  %>
             </div>
           <% @categories.each do |category|  %>
             <div class="col-5 mx-auto col-lg d-inline pill <%= 'active' if params[:category] == category %>">
-              <%= link_to "#{category} #{(Competition.category_count(category))}", competitions_path(category: category)  %>
+              <%= link_to "#{category} #{(Competition.category_count(category))}", competitions_path(request.params.merge(category: category))  %>
               
             </div>
           <% end %>

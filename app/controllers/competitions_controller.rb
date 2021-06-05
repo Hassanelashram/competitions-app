@@ -5,15 +5,16 @@ class CompetitionsController < ApplicationController
   def index
     @comp = Competition.active
     @categories = Competition::ALLOWED_CATEGORIES
-
-    @comp = @comp.order(award: :desc) if params[:award].present?
-    @comp = @comp.order(price_cents: :asc) if params[:entrance].present?
-    @comp = @comp.order(end_date: :asc) if params[:end_date].present?
-
-    return unless params[:category].present?
-
-    @comp = @comp.where(category: @categories) if params[:category] == "all"
-    @comp = @comp.where(category: params[:category]) unless params[:category] == "all"
+    case params[:sorting]
+    when "entrance"
+      @comp = @comp.order(price_cents: :asc)
+    when "award"
+      @comp = @comp.order(award: :desc)
+    when "ending"
+      @comp = @comp.order(end_date: :asc)
+    end
+    
+    @comp = @comp.where(category: params[:category]) if params[:category].present?
   end
 
   def show
