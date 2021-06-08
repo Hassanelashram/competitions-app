@@ -133,6 +133,7 @@ GEM
       sort_alphabetical (~> 1.0)
     crass (1.0.6)
     diff-lcs (1.4.4)
+    digest (3.0.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -146,6 +147,8 @@ GEM
       activesupport (>= 5.0)
       request_store (>= 1.0)
     erubi (1.10.0)
+    et-orbi (1.2.4)
+      tzinfo
     ethon (0.13.0)
       ffi (>= 1.15.0)
     execjs (2.7.0)
@@ -167,6 +170,9 @@ GEM
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.6.0)
+    fugit (1.5.0)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     geocoder (1.6.7)
     gh (0.15.1)
       addressable (~> 2.4.0)
@@ -315,6 +321,7 @@ GEM
     pusher-client (0.6.2)
       json
       websocket (~> 1.0)
+    raabro (1.4.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.6.5)
@@ -424,6 +431,13 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     shellany (0.0.1)
+    sidekiq (6.2.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
+    sidekiq-cron (1.2.0)
+      fugit (~> 1.1)
+      sidekiq (>= 4.2.1)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -507,6 +521,7 @@ DEPENDENCIES
   cloudinary (~> 1.20.0)
   country_select (~> 4.0)
   devise!
+  digest
   dotenv-rails
   draper
   factory_bot_rails
@@ -536,6 +551,8 @@ DEPENDENCIES
   rubocop
   sass-rails (>= 6)
   selenium-webdriver
+  sidekiq
+  sidekiq-cron
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

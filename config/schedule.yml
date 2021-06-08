@@ -1,0 +1,3 @@
+close_expired_competitions:
+  cron: "* 4 * * *"
+  class: Competitions::DeleteEndedJob

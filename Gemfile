@@ -26,10 +26,13 @@ gem 'draper'
 gem 'pundit'
 gem 'oj'
 gem 'country_select', '~> 4.0'
+gem 'sidekiq'
+gem "sidekiq-cron"
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.3.5'
+gem 'digest'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

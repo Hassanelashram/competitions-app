@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "ruby.rubocop.executePath": "path/where/rubocop/is/located",
+    "ruby.format": "rubocop",
+    "launch": {
+        "configurations": [],
+        "compounds": []
+    }
+}
