@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { :host => 'stryfe-app.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'stryfe-app.herokuapp.com' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -9,7 +9,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
+  config.hosts << /[a-z0-9\-]+\.ngrok\.io/
   # Show full error reports.
   config.consider_all_requests_local = true
 
@@ -38,13 +38,14 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'stryfe-app.herokuapp.com',
-    user_name:            'elashramhassan@gmail.com',
-    password:              ENV["GMAIL_PASSWORD"],
-    authentication:       'plain',
-    enable_starttls_auto: true }
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'stryfe-app.herokuapp.com',
+    user_name: 'elashramhassan@gmail.com',
+    password: ENV["GMAIL_PASSWORD"],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
